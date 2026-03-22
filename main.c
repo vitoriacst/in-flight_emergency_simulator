@@ -11,13 +11,12 @@ int main() {
 
 	printf("### Flight emergency ### \n");
 
-	printf("### Enter the criticality of the failure: ### \n 1 - Basic \n 2 - intermediary \n 3 - Extremely Danger \n");
+	printf("### Enter the criticality of the failure: ### \n 1 - Basic \n 2 - intermatiate \n 3 - Extremaly Danger \n");
 
 	scanf("%d", &fail_code);
 
 	if(fail_code){
 	    fails(fail_code);
-	    plane_data();
 	}
 
 	return 0;
@@ -30,7 +29,11 @@ void fails(int fail_code){
     if(fail_code == 1){
         printf("1 - Engine partial failure\n2 - Low fuel level\n3 - Ice on wings\n4 - Turbulence\n");
         scanf("%d", &status);
+        if(status == 4){
+         printf("Calm down, turbulence is not a problem. \n");
+        } else {
         printf("--- Fail recorded --- \n");
+        }
     } else if(fail_code == 2){
         printf("1 - Gradual loss of altitude\n2 - Fuel leak\n3 - Electrical failure\n");
         scanf("%d", &status);
@@ -38,18 +41,21 @@ void fails(int fail_code){
     } else {
         printf("1 - Total electrical failure\n2 - Severe icing\n3 - Fuel depletion\n");
         scanf("%d", &status);
+        printf("OMG, its very danger situation \n");
         printf("--- Fail recorded --- \n");
     };
     printf("--- Now, you need insert plane data --- \n");
-    plane_data();
+
+
+    if(fail_code != 1 && status != 4){
+        plane_data();
+    };
 };
 
 void plane_data(){
 	float altitude;
 	float fuel;
 	float speed;
-
-
 
 	printf("You need insert the altitude: \n");
 
@@ -63,9 +69,5 @@ void plane_data(){
 
 	scanf("%f", &speed);
 
-
-	printf("You need insert the important values: \n");
-
-	scanf("%d", &altitude);
-
+    printf("--- air plane data recorded --- \n");
 };
